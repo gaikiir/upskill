@@ -1,0 +1,63 @@
+src/
+├── components/
+│   ├── common/              # Reusable UI components
+│   │   ├── Button/
+│   │   │   ├── Button.jsx
+│   │   │   ├── Button.module.css
+│   │   │   └── Button.test.jsx
+│   │   ├── Card/
+│   │   │   ├── Card.jsx
+│   │   │   └── Card.module.css
+│   │   ├── Modal/
+│   │   ├── Input/
+│   │   └── index.js         # Export all common components
+│   │
+│   ├── layout/              # Layout components
+│   │   ├── Header/
+│   │   │   ├── Header.jsx
+│   │   │   └── Header.module.css
+│   │   ├── Footer/
+│   │   ├── Sidebar/
+│   │   └── index.js
+│   │
+│   ├── features/            # Feature-specific components
+│   │   ├── Dashboard/
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Dashboard.module.css
+│   │   │   └── components/  # Components used only in Dashboard
+│   │   │       ├── DashboardCard.jsx
+│   │   │       └── StatWidget.jsx
+│   │   ├── UserProfile/
+│   │   └── Products/
+│   │
+│   └── index.js             # Main export file
+│
+├── hooks/                   # Custom React hooks
+│   ├── useFetch.js
+│   ├── useForm.js
+│   ├── useLocalStorage.js
+│   └── index.js
+│
+├── utils/                   # Utility functions
+│   ├── api.js
+│   ├── helpers.js
+│   ├── validators.js
+│   └── constants.js
+│
+├── styles/                  # Global styles
+│   ├── globals.css
+│   ├── variables.css
+│   └── reset.css
+│
+├── context/                 # Context API setup
+│   ├── AuthContext.jsx
+│   ├── ThemeContext.jsx
+│   └── index.js
+│
+├── pages/                   # Page components (if using routing)
+│   ├── HomePage.jsx
+│   ├── AboutPage.jsx
+│   └── NotFoundPage.jsx
+│
+├── App.jsx
+└── main.jsx
