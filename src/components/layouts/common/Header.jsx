@@ -1,7 +1,7 @@
 // src/components/Hero.jsx
 import { Card } from "@material-tailwind/react";
 
-export default function HeroCompo({ title, subtitle, image }) {
+export default function HeaderCompo({ title, subtitle, image }) {
   return (
     <>
       <Card className="w-full max-w-6xl mx-auto min-h-80 hero rounded-lg shadow-xl p-6">

@@ -34,7 +34,6 @@ export default function HeroFlexContent({
                   <img
                     src={src}
                     alt={item.imageDescription || item.imagePath}
-                    loading="lazy"
                     className="max-w-full h-14 sm:h-16 md:h-20 object-contain bg-gray-50"
                   />
                   {item.imageDescription && (

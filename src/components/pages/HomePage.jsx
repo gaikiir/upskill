@@ -1,11 +1,12 @@
 
-import HeroCompo from "../layouts/common/Hero";
+import Features from "../layouts/common/Features";
+import HeaderCompo from "../layouts/common/Header";
 import HeroFlexContent from "../layouts/common/Hero_flex";
 
 export default function HomePage() {
   return (
     <div className="py-12 w-full max-w-7xl mx-auto">
-      <HeroCompo
+      <HeaderCompo
         title="home | bootcamp"
         subtitle="bootcamp Program"
         image="/images/student.png"
@@ -13,6 +14,7 @@ export default function HomePage() {
 
       <HeroFlexContent/>
 
+      <Features/>
       {/* <Features items={features} />
 
       <div className="max-w-6xl mx-auto px-4">
