@@ -1,7 +1,7 @@
 
-import Features from "../layouts/common/Features";
 import HeaderCompo from "../layouts/common/Header";
 import HeroFlexContent from "../layouts/common/Hero_flex";
+import UpSkillCompo from "../layouts/common/Upskills";
 
 export default function HomePage() {
   return (
@@ -14,7 +14,7 @@ export default function HomePage() {
 
       <HeroFlexContent/>
 
-      <Features/>
+      <UpSkillCompo/>
       {/* <Features items={features} />
 
       <div className="max-w-6xl mx-auto px-4">
