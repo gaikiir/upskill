@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import HeaderComp from "./components/layouts/Header";
 import NavbarMain from "./components/layouts/Navbar";
+import HomePage from "./components/pages/HomePage";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <NavbarMain />
       <div className="app">
         <Routes>
-          <Route exact path="/" element={<HeaderComp />} />
+          <Route exact path="/" element={<HomePage/>} />
         </Routes>
       </div>
     </BrowserRouter>

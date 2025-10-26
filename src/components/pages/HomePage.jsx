@@ -1,18 +1,18 @@
-// import { courses, faqs, features } from "../../data/mockData";
-// import CourseGrid from "../CourseGrid";
-// import FAQ from "../FAQ";
-// import Features from "../Features";
-import studentImg from "../../../src/assets/images/student.png";
-import Hero from "../Hero";
+
+import HeroCompo from "../layouts/common/Hero";
+import HeroFlexContent from "../layouts/common/Hero_flex";
 
 export default function HomePage() {
   return (
-    <div className="py-12">
-      <Hero
+    <div className="py-12 w-full max-w-7xl mx-auto">
+      <HeroCompo
         title="home | bootcamp"
         subtitle="bootcamp Program"
-        image={studentImg}
+        image="/images/student.png"
       />
+
+      <HeroFlexContent/>
+
       {/* <Features items={features} />
 
       <div className="max-w-6xl mx-auto px-4">

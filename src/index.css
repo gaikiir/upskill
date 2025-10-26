@@ -3,7 +3,7 @@
 @tailwind utilities;
 /* header section style background */
 .hero {
-  background-image: linear-gradient(to right, rgba(202, 190, 202, 0.88), rgba(240, 230, 230, 0.50)), url('./assets/images/upskill-background.jpg');
+  background-image: linear-gradient(to right, rgba(202, 190, 202, 0.88), rgba(240, 230, 230, 0.50)), url('/images/upskill-background.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
