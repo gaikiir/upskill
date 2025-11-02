@@ -1,6 +1,6 @@
-
 import HeaderCompo from "../layouts/common/Header";
 import HeroFlexContent from "../layouts/common/Hero_flex";
+import ProgramGrid from "../layouts/common/ProgramGrid";
 import UpSkillCompo from "../layouts/common/Upskills";
 
 export default function HomePage() {
@@ -12,18 +12,10 @@ export default function HomePage() {
         image="/images/student.png"
       />
 
-      <HeroFlexContent/>
+      <HeroFlexContent />
+      <UpSkillCompo />
+      <ProgramGrid />
 
-      <UpSkillCompo/>
-      {/* <Features items={features} />
-
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl font-bold mb-4">Bootcamp Program</h2>
-      </div>
-
-      <CourseGrid courses={courses} />
-
-      <FAQ faqs={faqs} /> */}
     </div>
   );
 }

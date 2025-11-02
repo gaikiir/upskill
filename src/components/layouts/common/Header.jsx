@@ -4,7 +4,7 @@ import { Card } from "@material-tailwind/react";
 export default function HeaderCompo({ title, subtitle, image }) {
   return (
     <>
-      <Card className="w-full max-w-6xl mx-auto min-h-80 hero rounded-lg shadow-xl p-6">
+      <Card className="w-full max-w-7xl mx-auto min-h-80 hero rounded-lg  shadow-xl mt-8 p-6">
         <div className="flex flex-col md:flex-row items-center gap-6">
           {/* Left: text - takes half the space */}
           <div className="flex-1 flex flex-col justify-center  text-left text-black capitalize ">
