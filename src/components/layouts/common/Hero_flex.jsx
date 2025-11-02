@@ -17,15 +17,14 @@ export default function HeroFlexContent({
   showLabelsBelow = true,
 }) {
   return (
-    <section className="max-w-6xl mx-auto mt-6 px-4">
+    <section className="max-w-7xl mx-auto mt-6 px-4">
       {/* Use horizontal scroll on very small screens, but attempt single row on md+ */}
-      <div className="overflow-x-auto -mx-2">
+      <div className=" -mx-2">
         <div className="flex flex-nowrap justify-center items-center px-2">
           {images.map((item, index) => {
             if (!item?.imagePath) return null;
-            const src = `${folder}/${item.imagePath}`; // public path e.g. /images/student.png
+            const src = `${folder}/${item.imagePath}`; 
             return (
-              // At md and up each item will take ~11.11% so 9 items fit in one row
               <div
                 key={index}
                 className="flex-shrink-0 w-1/6 sm:w-1/8 md:w-[10.5%] p-1"
@@ -34,7 +33,7 @@ export default function HeroFlexContent({
                   <img
                     src={src}
                     alt={item.imageDescription || item.imagePath}
-                    className="max-w-full h-14 sm:h-16 md:h-20 object-contain bg-gray-50"
+                    className="max-w-full h-14 sm:h-16 md:h-14 object-contain bg-gray-50"
                   />
                   {item.imageDescription && (
                     <figcaption

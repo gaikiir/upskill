@@ -10,7 +10,7 @@ const ImageCheckbox = ({ title, image, description }) => {
       )}
       <div className="flex-1">
         {title && (
-          <p className="text-sm font-medium text-gray-800 leading-tight ">
+          <p className="text-sm font-medium  text-gray-800 leading-tight ">
             {title}
           </p>
         )}
@@ -58,7 +58,7 @@ export default function UpSkillCompo() {
 
   return (
     <section className="py-10 bg-gray-50 mt-4">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Left Column: Heading + Two-Column Checkboxes */}
           <article className="space-y-6">
