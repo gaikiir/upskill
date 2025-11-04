@@ -85,7 +85,7 @@ export default function UpSkillCompo() {
             <img
               src={rightImage}
               alt="Upskill Program Illustration"
-              className="w-full h-full object-cover rounded-lg shadow-lg"
+              className="w-full h-full object-cover rounded-lg shadow-none"
             />
           </figure>
         </div>
