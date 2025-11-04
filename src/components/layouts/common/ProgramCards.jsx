@@ -1,19 +1,47 @@
 import {
-    Button,
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    Typography,
+  Card,
+  CardBody,
+  CardHeader,
+  Typography,
 } from "@material-tailwind/react";
 
-export default function ProgramCards({ image, title }) {
-    console.log(image, title)
+export default function ProgramCards({
+  image,
+  title,
+  instructor,
+  rating,
+  reviewCount,
+  currentPrice = "$49",
+  originalPrice = "",
+  isPremium = false,
+  isBestseller = false,
+}) {
+  
+  const renderStars = (ratingValue) => {
+    const fullStars = Math.floor(ratingValue);
+    const hasHalfStar = ratingValue % 1 !== 0;
+    const stars = [];
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push("★");
+    }
+    if (hasHalfStar) {
+      stars.push("☆"); // Half star approximation; use a half-star icon for better UX
+    }
+    for (let i = stars.length; i < 5; i++) {
+      stars.push("☆");
+    }
+
+    return stars.join("");
+  };
+
+  const stars = renderStars(rating);
+
   return (
     <>
       <div className="w-full h-full">
-        <Card className="w-full h-full flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="m-0 rounded-none h-36 flex-shrink-0">
+        <Card className="w-full h-full rounded-none flex flex-col overflow-hidden shadow-none hover:shadow-xl transition-shadow duration-300">
+          <CardHeader className="m-0 rounded-none h-36 flex-shrink-0 relative">
             <img
               src={image}
               alt={title}
@@ -21,20 +49,52 @@ export default function ProgramCards({ image, title }) {
             />
           </CardHeader>
 
-          <CardBody className="p-2 pb-1 flex-grow text-left">
-            <Typography className="text-gray-600 text-sm mb-3">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            </Typography>
-            <div className="block">
-              <h4 className="text-sm text-gray-700 mb-2">By : chris</h4>
-              <span className="text-yellow-500">⭐️⭐️⭐️⭐️⭐️</span>
+          <CardBody className="p-2 pb-2 flex-grow text-left flex flex-col justify-between">
+            <div>
+              <Typography
+                variant="h5"
+                className="text-gray-800 text-1xl mb-2 font-semibold "
+              >
+                {title}
+              </Typography>
+              <Typography className="text-gray-600 text-sm mb-2">
+                {instructor}
+              </Typography>
+            </div>
+            <div className="block mt-auto">
+              <div className="flex items-center justify-between mb-2">
+                <Typography className="text-sm text-yellow-900 font-medium">
+                  {stars} {rating} ({reviewCount})
+                </Typography>
+              </div>
+
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-1">
+                  {originalPrice && (
+                    <Typography className="text-sm text-gray-500 line-through">
+                      {originalPrice}
+                    </Typography>
+                  )}
+                  <Typography className="text-lg font-bold text-gray-900">
+                    {currentPrice}
+                  </Typography>
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                {isBestseller && (
+                  <span className="bg-green-900 text-white px-2 py-1 rounded text-xs font-semibold">
+                    Bestseller
+                  </span>
+                )}
+                {isPremium && (
+                  <span className="bg-purple-900 text-white px-2 py-1 rounded text-xs font-semibold">
+                    Premium
+                  </span>
+                )}
+              </div>
             </div>
           </CardBody>
-          <CardFooter className="p-4 pt-2">
-            <Button className="w-full  border border-blue-gray-200 text-gray-100 hover:bg-blue-gray-800 transition-colors duration-300">
-              start learning
-            </Button>
-          </CardFooter>
         </Card>
       </div>
     </>

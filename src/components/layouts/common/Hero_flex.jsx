@@ -1,35 +1,49 @@
 const HeroFlexImages = [
-  { imagePath: "briefcase.png", imageDescription: "Business" },
-  { imagePath: "terminal.png", imageDescription: "Development" },
-  { imagePath: "language.png", imageDescription: "Language" },
-  { imagePath: "microphone.png", imageDescription: "Meeting " },
-  { imagePath: "finance.png", imageDescription: "Finance" },
-  { imagePath: "design.png", imageDescription: "Design" },
-  { imagePath: "camera.png", imageDescription: "Photography" },
-  { imagePath: "office.png", imageDescription: "Office" },
-  { imagePath: "science.png", imageDescription: "Science" },
+  {imgId: 1,imagePath: "image/briefcase.png", imageDescription: "Business" },
+  {imgId: 2,imagePath: "image/terminal.png", imageDescription: "Development" },
+  {imgId: 3,imagePath: "image/language.png", imageDescription: "Language" },
+  {imgId: 4,imagePath: "image/microphone.png", imageDescription: "Meeting " },
+  {imgId: 5,imagePath: "image/finance.png", imageDescription: "Finance" },
+  {imgId: 6,imagePath: "image/design.png", imageDescription: "Design" },
+  {imgId: 7,imagePath: "image/camera.png", imageDescription: "Photography" },
+  {imgId: 7,imagePath: "image/office.png", imageDescription: "Office" },
+  {imgId: 8,imagePath: "image/science.png", imageDescription: "Science" },
 ];
 
-export default function HeroFlexContent({
-  images = HeroFlexImages,
-  folder = "/images",
-  showCaptions = false,
-  showLabelsBelow = true,
-}) {
+export default function HeroFlexContent() {
   return (
     <section className="max-w-7xl mx-auto mt-6 px-4">
       {/* Use horizontal scroll on very small screens, but attempt single row on md+ */}
       <div className=" -mx-2">
-        <div className="flex flex-nowrap justify-center items-center px-2">
+        
+        
+      </div>
+    </section>
+  );
+}
+
+
+/*
+
+{
+  images = HeroFlexImages,
+  folder = "/images",
+  showCaptions = false,
+  showLabelsBelow = true,
+  id = imgId
+
+}
+
+<div className="flex flex-nowrap justify-center items-center px-2">
           {images.map((item, index) => {
             if (!item?.imagePath) return null;
             const src = `${folder}/${item.imagePath}`; 
             return (
               <div
-                key={index}
+                key={index.id}
                 className="flex-shrink-0 w-1/6 sm:w-1/8 md:w-[10.5%] p-1"
               >
-                <figure className="overflow-hidden rounded-md bg-white shadow-sm hover:shadow-md transition-shadow flex items-center justify-center p-1">
+                <figure className="overflow-hidden rounded-md bg-white shadow-none hover:shadow-md transition-shadow flex items-center justify-center p-1">
                   <img
                     src={src}
                     alt={item.imageDescription || item.imagePath}
@@ -63,7 +77,4 @@ export default function HeroFlexContent({
             ))}
           </div>
         )}
-      </div>
-    </section>
-  );
-}
+*/ 

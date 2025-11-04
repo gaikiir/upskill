@@ -11,11 +11,9 @@ export default function HomePage() {
         subtitle="bootcamp Program"
         image="/images/student.png"
       />
-
       <HeroFlexContent />
       <UpSkillCompo />
       <ProgramGrid />
-
     </div>
   );
 }
