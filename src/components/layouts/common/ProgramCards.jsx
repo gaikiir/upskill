@@ -91,7 +91,7 @@ export default function ProgramCards({
                   <span className="bg-purple-900 text-white px-2 py-1 rounded text-xs font-semibold">
                     Premium
                   </span>
-                )}
+                )} 
               </div>
             </div>
           </CardBody>
