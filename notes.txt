@@ -344,11 +344,13 @@ export default function ProgramCard() {
                   {/* Assuming authors are hardcoded; adjust if dynamic */}
                   Sagnik Bhattacharya, Paulina Knop
                 </Typography>
+
+                
                 <Typography
                   variant="small"
                   className="text-yellow-600 font-medium text-xs text-left"
                 >
-                  4.7 ★★★★☆ (1,782){" "}
+                  4.7 ★★★★☆ (1,782)
                   {/* Hardcoded for now; make dynamic if needed */}
                 </Typography>
               </CardBody>

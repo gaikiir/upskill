@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { UseProducts } from "./useProduct";
+import { UseProducts } from "./UseProduct";
+
 
 export const ProductDetails = (productId) => {
   const {
-    product: allProducts,
+    products: allProducts,
     loading: LoadingAll,
-    err: errAll,
+    error: errAll,
   } = UseProducts();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [product, setProduct] = useState(null);
+
   useEffect(() => {
     if (!productId) {
       setError("Product Id is Required");
@@ -31,7 +33,9 @@ export const ProductDetails = (productId) => {
     }
 
     //find the product
-    const foundProduct = allProducts?.find((p) => p.id === parseInt(productId));
+    const foundProduct = Array.isArray(allProducts)
+      ? allProducts.find((p) => p.id === parseInt(productId))
+      : null;
     if (foundProduct) {
       setProduct(foundProduct);
       setError(null);
