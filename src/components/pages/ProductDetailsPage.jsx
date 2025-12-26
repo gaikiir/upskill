@@ -1,7 +1,7 @@
 import { Button, Typography } from "@material-tailwind/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { UseFavorites } from "../hooks/UseFavorite";
+import { UseFavorites } from "../hooks/FavoriteContext";
 import { ProductDetails } from "../hooks/UseProductDetails";
 import EmptyState from "../layouts/utilities/EmptyState";
 import ErrorMessage from "../layouts/utilities/Error";
@@ -15,6 +15,20 @@ export const ProductDetailPage = () => {
   const { product, loading, error, refetch } = ProductDetails(id);
   const { toggleFavorite, isFavorite } = UseFavorites();
   const [quantity, setQuantity] = useState(1);
+  const [userRating, setUserRating] = useState(0);
+  const [hasUserRated, setHasUserRated] = useState(false);
+
+  // Update user rating when product loads
+  useEffect(() => {
+    if (product?.id) {
+      // Load user's previous rating from localStorage
+      const savedRating = localStorage.getItem(`rating_${product.id}`);
+      if (savedRating) {
+        setUserRating(parseFloat(savedRating));
+        setHasUserRated(true);
+      }
+    }
+  }, [product]);
 
   const handleBack = () => {
     navigate(-1);
@@ -72,19 +86,22 @@ export const ProductDetailPage = () => {
 
   // Calculate discount percentage
   const discountPercent = product.originalPrice
-    ? Math.round(
-        ((product.originalPrice - product.price) / product.originalPrice) * 100
-      )
+    ? (() => {
+        const original = parseFloat(product.originalPrice.replace(/[^\d.-]/g, ""));
+        const current = parseFloat(product.price.replace(/[^\d.-]/g, ""));
+        if (!original || original <= 0) return 0;
+        return Math.round(((original - current) / original) * 100);
+      })()
     : 0;
 
   return (
-    <section className="bg-gray-50 min-h-screen flex items-center justify-center py-8">
-      <div className="max-w-6xl w-full mx-auto px-4">
+    <section className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen py-8 md:py-12">
+      <div className="max-w-[90rem] w-full mx-auto px-4 sm:px-6 lg:px-8 mt-5">
         {/* Back Button */}
         <Button
           onClick={handleBack}
           variant="text"
-          className="mb-4 flex items-center gap-2"
+          className="mb-6 flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -104,16 +121,18 @@ export const ProductDetailPage = () => {
         </Button>
 
         {/* Product Details Card */}
-        <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 max-h-[85vh] overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 p-6 md:p-8 lg:p-12">
             {/* Left Column - Image */}
-            <div className="relative flex justify-center items-center">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full max-w-md h-auto rounded-lg shadow-md object-contain"
-              />
-              <div className="absolute top-4 right-4">
+            <div className="relative group">
+              <div className="relative bg-gray-50 rounded-xl overflow-hidden aspect-square flex items-center justify-center p-4 md:p-8">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute top-4 right-4 z-10">
                 <HeartIcon
                   id={product.id}
                   filled={isFavorite(product.id)}
@@ -121,8 +140,8 @@ export const ProductDetailPage = () => {
                 />
               </div>
               {product.badge && (
-                <div className="absolute top-4 left-4">
-                  <span className="bg-orange-700 text-white text-sm px-3 py-1 rounded shadow-md">
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="bg-gradient-to-r from-orange-600 to-orange-700 text-white text-xs md:text-sm px-4 py-2 rounded-full shadow-lg font-semibold uppercase tracking-wide">
                     {product.badge}
                   </span>
                 </div>
@@ -130,112 +149,162 @@ export const ProductDetailPage = () => {
             </div>
 
             {/* Right Column - Product Info */}
-            <div className="flex flex-col">
-              {/* Product Name */}
-              <Typography variant="h3" className="text-gray-900 mb-3">
-                {product.name}
-              </Typography>
+            <div className="flex flex-col justify-between">
+              <div>
+                {/* Product Name */}
+                <Typography variant="h2" className="text-gray-900 mb-4 font-bold leading-tight">
+                  {product.name}
+                </Typography>
 
-              {/* Rating */}
-              <div className="mb-4">
-                <StarRating
-                  initialRating={product.rating}
-                  showMessage={true}
-                  size={24}
-                />
-              </div>
-
-              {/* Price */}
-              <div className="mb-6">
-                <div className="flex items-baseline gap-3 flex-wrap">
-                  <Typography variant="h4" className="text-gray-900 font-bold">
-                    ${product.price}
-                  </Typography>
-                  {product.originalPrice && (
-                    <>
-                      <Typography
-                        variant="h6"
-                        className="line-through text-gray-500"
-                      >
-                        ${product.originalPrice}
-                      </Typography>
-                      <span className="bg-green-100 text-green-800 text-sm px-2 py-1 rounded font-semibold">
-                        {discountPercent}% OFF
-                      </span>
-                    </>
-                  )}
+                {/* Rating */}
+                <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                  <div className="mb-3">
+                    <Typography variant="small" className="text-gray-600 font-semibold mb-2 block">
+                      Your Rating
+                    </Typography>
+                    <StarRating
+                      initialRating={userRating}
+                      showMessage={true}
+                      showNumeric={true}
+                      ratingCount={hasUserRated ? 1 : null}
+                      size={32}
+                      allowFractional={false}
+                      readOnly={false}
+                      color="#fbbf24"
+                      onRate={(rating) => {
+                        setUserRating(rating);
+                        setHasUserRated(true);
+                        // Save to localStorage
+                        if (product?.id) {
+                          localStorage.setItem(`rating_${product.id}`, rating.toString());
+                        }
+                        // Here you can add API call to save the rating to backend
+                        console.log("User rated:", rating, "for product:", product?.id);
+                      }}
+                      className="w-full"
+                    />
+                  </div>
+                  <div className="pt-3 border-t border-gray-200">
+                    <Typography variant="small" className="text-gray-500 mb-2 block">
+                      Average Rating
+                    </Typography>
+                    <StarRating
+                      initialRating={product.rating}
+                      showMessage={false}
+                      showNumeric={true}
+                      ratingCount={null}
+                      size={24}
+                      allowFractional={true}
+                      readOnly={true}
+                      color="#fbbf24"
+                      className="w-full"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Description */}
-              <Typography className="text-gray-700 text-left mb-6 leading-relaxed">
-                {product.description}
-              </Typography>
+                {/* Price */}
+                <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                  <div className="flex items-baseline gap-4 flex-wrap">
+                    <Typography variant="h3" className="text-gray-900 font-bold">
+                      {product.price}
+                    </Typography>
+                    {product.originalPrice && (
+                      <>
+                        <Typography
+                          variant="h6"
+                          className="line-through text-gray-400"
+                        >
+                          {product.originalPrice}
+                        </Typography>
+                        <span className="bg-gradient-to-r from-green-500 to-green-600 text-white text-sm px-3 py-1.5 rounded-full font-bold shadow-md">
+                          Save {discountPercent}%
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </div>
 
-              {/* Category & Stock */}
-              <div className="mb-6 space-y-2 text-left">
-                <Typography variant="small" className="text-gray-600">
-                  Category:{" "}
-                  <span className="font-semibold text-gray-800">
-                    {product.category}
-                  </span>
-                </Typography>
-                <Typography variant="small" className="text-gray-600">
-                  Availability:{" "}
-                  <span
-                    className={`font-semibold ${
-                      product.inStock ? "text-green-600" : "text-red-600"
-                    }`}
-                  >
-                    {product.inStock ? "In Stock" : "Out of Stock"}
-                  </span>
-                </Typography>
-              </div>
-
-              {/* Quantity Selector */}
-              <div className="mb-6 text-left">
-                <Typography
-                  variant="small"
-                  className="text-gray-700 mb-2 font-semibold"
-                >
-                  Quantity:
-                </Typography>
-                <div className="flex items-center gap-3">
-                  <Button
-                    size="sm"
-                    variant="outlined"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    disabled={quantity <= 1}
-                  >
-                    -
-                  </Button>
-                  <Typography className="w-12 mb-5 text-center font-semibold text-lg">
-                    {quantity}
+                {/* Description */}
+                <div className="mb-6">
+                  <Typography className="text-gray-700 text-base leading-relaxed">
+                    {product.description}
                   </Typography>
-                  <Button
-                    size="sm"
-                    variant="outlined"
-                    onClick={() => setQuantity(quantity + 1)}
-                    disabled={!product.inStock}
+                </div>
+
+                {/* Category & Stock */}
+                <div className="mb-6 grid grid-cols-2 gap-4">
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    <Typography variant="small" className="text-gray-500 mb-1">
+                      Category
+                    </Typography>
+                    <Typography variant="small" className="font-semibold text-gray-800">
+                      {product.category}
+                    </Typography>
+                  </div>
+                  <div className="p-3 bg-gray-50 rounded-lg">
+                    <Typography variant="small" className="text-gray-500 mb-1">
+                      Availability
+                    </Typography>
+                    <Typography
+                      variant="small"
+                      className={`font-semibold ${
+                        product.inStock ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {product.inStock ? "In Stock" : "Out of Stock"}
+                    </Typography>
+                  </div>
+                </div>
+
+                {/* Quantity Selector */}
+                <div className="mb-8">
+                  <Typography
+                    variant="small"
+                    className="text-gray-700 mb-3 font-semibold block"
                   >
-                    +
-                  </Button>
+                    Quantity
+                  </Typography>
+                  <div className="flex items-center gap-4">
+                    <Button
+                      size="md"
+                      variant="outlined"
+                      className="min-w-[48px] h-12 rounded-lg border-2"
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      disabled={quantity <= 1}
+                    >
+                      <span className="text-xl font-bold">−</span>
+                    </Button>
+                    <div className="w-16 h-12 flex items-center justify-center bg-gray-50 rounded-lg border-2 border-gray-200">
+                      <Typography className="font-bold text-lg text-gray-900">
+                        {quantity}
+                      </Typography>
+                    </div>
+                    <Button
+                      size="md"
+                      variant="outlined"
+                      className="min-w-[48px] h-12 rounded-lg border-2"
+                      onClick={() => setQuantity(quantity + 1)}
+                      disabled={!product.inStock}
+                    >
+                      <span className="text-xl font-bold">+</span>
+                    </Button>
+                  </div>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-4 mt-auto">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-gray-200">
                 <Button
                   size="lg"
-                  className="flex-1"
+                  variant="outlined"
+                  className="flex-1 h-14 text-base font-semibold border-2 hover:bg-gray-50"
                   disabled={!product.inStock}
                 >
                   Add to Cart
                 </Button>
                 <Button
                   size="lg"
-                  variant="outlined"
-                  className="flex-1"
+                  className="flex-1 h-14 text-base font-semibold bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg"
                   disabled={!product.inStock}
                 >
                   Buy Now

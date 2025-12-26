@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 export default function NavbarMain() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // toggle the open/close state of the navbar
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth > 960) setIsOpen(false);
@@ -39,8 +38,8 @@ export default function NavbarMain() {
         variant="small"
         color="blue-gray"
       >
-        <Link to="/course" className="flex items-center">
-          Course
+        <Link to="/menu" className="flex items-center">
+          Menu
         </Link>
       </Typography>
       <Typography
@@ -49,8 +48,8 @@ export default function NavbarMain() {
         variant="small"
         color="blue-gray"
       >
-        <Link to="/bootcamp" className="flex items-center">
-          BootCamp
+        <Link to="/about" className="flex items-center">
+          About Us
         </Link>
       </Typography>
       <Typography
@@ -59,8 +58,8 @@ export default function NavbarMain() {
         variant="small"
         color="blue-gray"
       >
-        <Link to="/page" className="flex items-center">
-          Page
+        <Link to="/reservations" className="flex items-center">
+          Reservations
         </Link>
       </Typography>
       <Typography
@@ -69,8 +68,8 @@ export default function NavbarMain() {
         variant="small"
         color="blue-gray"
       >
-        <Link to="/blog" className="flex items-center">
-          Blog
+        <Link to="/gallery" className="flex items-center">
+          Gallery
         </Link>
       </Typography>
       <Typography
@@ -80,7 +79,7 @@ export default function NavbarMain() {
         color="blue-gray"
       >
         <Link to="/contact" className="flex items-center">
-          Contact Us
+          Contact
         </Link>
       </Typography>
     </ul>
@@ -88,15 +87,15 @@ export default function NavbarMain() {
 
   return (
     <>
-      <div className="-m-6 max-h-[768px] w-[calc(100%+48px)] ">
-        <Navbar className="fixed top-0 left-0  z-10 max-h max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+      <div className="-m-6 max-h-[768px] w-[calc(100%+48px)]">
+        <Navbar className="fixed top-0 left-0 z-10 max-h max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
           <div className="flex items-center justify-between text-blue-gray-900">
             <Typography
               as="a"
               href="#"
               className="mr-4 cursor-pointer py-1.5 font-medium"
             >
-              Upskill
+              Urban Utopia
             </Typography>
             <div className="flex items-center gap-4">
               <div className="mr-4 hidden lg:block">{NavbarItems}</div>
@@ -106,7 +105,7 @@ export default function NavbarMain() {
                   size="sm"
                   className="hidden lg:inline-block"
                 >
-                  <span>Login</span>
+                  <span>Sign In</span>
                 </Button>
 
                 <Button
@@ -114,7 +113,7 @@ export default function NavbarMain() {
                   size="sm"
                   className="hidden lg:inline-block"
                 >
-                  <span>Register</span>
+                  <span>Order Online</span>
                 </Button>
               </div>
 
@@ -122,7 +121,7 @@ export default function NavbarMain() {
                 className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
                 variant="text"
                 ripple={false}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsOpen((open) => !open)}
               >
                 {isOpen ? (
                   <svg
@@ -160,11 +159,11 @@ export default function NavbarMain() {
           <Collapse open={isOpen}>
             {NavbarItems}
             <div className="flex items-center gap-x-1">
-              <Button fullWidth variant="text" size="sm" className="outline``">
-                <span>Log In</span>
+              <Button fullWidth variant="text" size="sm">
+                <span>Sign In</span>
               </Button>
-              <Button fullWidth variant="gradient" size="sm" className="">
-                <span>Sign in</span>
+              <Button fullWidth variant="gradient" size="sm">
+                <span>Order Online</span>
               </Button>
             </div>
           </Collapse>

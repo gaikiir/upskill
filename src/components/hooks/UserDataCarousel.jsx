@@ -4,7 +4,7 @@ const fakeData = [
   {
     id: 1,
     image:
-      "https://cdn.pixabay.com/photo/2016/11/29/13/56/asian-1870022_1280.jpg",
+      "https://cdn.pixabay.com/photo/2021/07/19/16/04/pizza-6478478_1280.jpg",
     title: "Discover Nature's Beauty",
     subtitle: "Explore breathtaking landscapes and unwind in serenity.",
     ctaText: "Learn More",
@@ -12,7 +12,7 @@ const fakeData = [
   {
     id: 2,
     image:
-      "https://cdn.pixabay.com/photo/2018/07/10/10/29/girl-3528292_1280.jpg",
+      "https://cdn.pixabay.com/photo/2023/01/17/07/59/mossel-dish-7724006_960_720.jpg",
     title: "Urban Adventures Await",
     subtitle: "Dive into the heart of the city with vibrant experiences.",
     ctaText: "Get Started",
@@ -20,7 +20,7 @@ const fakeData = [
   {
     id: 3,
     image:
-      "https://cdn.pixabay.com/photo/2021/02/18/12/03/people-6027028_1280.jpg",
+      "https://cdn.pixabay.com/photo/2016/03/27/21/34/restaurant-1284351_960_720.jpg",
     title: "Creative Inspirations",
     subtitle: "Unlock your potential with innovative ideas and tools.",
     ctaText: "Join Now",
@@ -28,7 +28,7 @@ const fakeData = [
   {
     id: 4,
     image:
-      "https://cdn.pixabay.com/photo/2025/01/30/20/09/read-9370928_1280.jpg",
+      "https://cdn.pixabay.com/photo/2015/01/16/15/01/dinner-601576_1280.jpg",
     title: "Creative Inspirations",
     subtitle: "Unlock your potential with innovative ideas and tools.",
     ctaText: "Join Now",
@@ -36,7 +36,7 @@ const fakeData = [
   {
     id: 5,
     image:
-      "https://cdn.pixabay.com/photo/2016/11/14/03/16/book-1822474_1280.jpg",
+      "https://cdn.pixabay.com/photo/2016/11/08/06/45/happy-valentines-day-1807617_960_720.jpg",
     title: "Creative Inspirations",
     subtitle: "Unlock your potential with innovative ideas and tools.",
     ctaText: "Join Now",
@@ -51,7 +51,7 @@ const UserCarouselData = () => {
     try {
       setLoading(true);
       setError(null);
-      await new Promise((resolve) => setTimeout(resolve, 4000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       const isValidateData = fakeData.filter(
         (item) => item.id && item.title && item.image
       );

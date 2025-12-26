@@ -1,14 +1,16 @@
 import UserCarouselData from "../hooks/UserDataCarousel";
-import MainCarousel from "../layouts/Carousel";
+import MainCarousel from "../layouts/common/Carousel";
+import GridItem from "../layouts/common/GridItems";
 import EmptyState from "../layouts/utilities/EmptyState";
 import ErrorMessage from "../layouts/utilities/Error";
 import IsLoading from "../layouts/utilities/Loading";
 
 export default function HomeComponent() {
-const { data, loading, error, refetch } = UserCarouselData();
+  const { data, loading, error, refetch } = UserCarouselData();
+
   if (loading) {
     return (
-      <section className="bg-gray-100 w-full max-w-7xl mx-auto">
+      <section className="bg-gray-100 w-full max-w-[90rem] mx-auto">
         <header className="mt-20">
           <IsLoading message="Loading carousel..." height="400px" />
         </header>
@@ -18,7 +20,7 @@ const { data, loading, error, refetch } = UserCarouselData();
 
   if (error) {
     return (
-      <section className="bg-gray-100 w-full max-w-7xl mx-auto">
+      <section className="bg-gray-100 w-full max-w-[90rem] mx-auto">
         <header className="mt-20">
           <ErrorMessage
             title="Failed to load carousel"
@@ -33,7 +35,7 @@ const { data, loading, error, refetch } = UserCarouselData();
 
   if (!data || data.length === 0) {
     return (
-      <section className="bg-gray-100 w-full max-w-7xl mx-auto">
+      <section className="bg-gray-100 w-full max-w-[90rem] mx-auto">
         <header className="mt-20">
           <EmptyState
             title="No carousel items"
@@ -46,8 +48,9 @@ const { data, loading, error, refetch } = UserCarouselData();
   }
   return (
     <>
-      <section className="bg-blue-gray-100 w-full h-full max-w-7xl">
-        <MainCarousel data={data}/>
+      <section className="w-full h-full max-w-[90rem] mx-auto">
+        <MainCarousel data={data} />
+        <GridItem />
       </section>
     </>
   );
