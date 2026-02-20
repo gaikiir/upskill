@@ -10,7 +10,7 @@ export const ProductDetails = (productId) => {
   } = UseProducts();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     if (!productId) {
