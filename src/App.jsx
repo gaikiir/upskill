@@ -1,25 +1,21 @@
-import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { FavoriteProvider } from "./components/hooks/FavoriteContext";
+
+import Footer from "./components/layouts/Footer";
 import NavbarMain from "./components/layouts/Navbar";
-import HomeComponent from "./components/pages/HomePage";
-import { ProductDetailPage } from "./components/pages/ProductDetailsPage";
+import HomePageComponent from "./components/pages/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
-      <FavoriteProvider>
-        <NavbarMain />
-        <div className="app">
-          {/* Toaster */}
-          <Toaster />
-          <Routes>
-            <Route exact path="/" element={<HomeComponent />} />
-            <Route path="/product/:id" element={<ProductDetailPage />} />
-          </Routes>
-        </div>
-      </FavoriteProvider>
+      <NavbarMain />
+      <div className="app">
+        <Routes>
+          <Route exact path="/" element={<HomePageComponent />} />
+          {/* <Route path="/product/:id" element={<ProductDetailPage />} /> */}
+        </Routes>
+        <Footer/>
+      </div>
     </BrowserRouter>
   );
 }
