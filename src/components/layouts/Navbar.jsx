@@ -88,14 +88,18 @@ export default function NavbarMain() {
   return (
     <>
       <div className="-m-6 max-h-[768px] w-[calc(100%+48px)]">
-        <Navbar className="fixed top-0 left-0 z-10 max-h max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+        <Navbar className="fixed top-0 left-0 z-50 max-h max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
           <div className="flex items-center justify-between text-blue-gray-900">
             <Typography
               as="a"
               href="#"
               className="mr-4 cursor-pointer py-1.5 font-medium"
             >
-              Urban Utopia
+              <img
+                src="images/urban-utopia-logo.png"
+                alt="logo"
+                className="w-12 object-cover bg-black rounded-full "
+              />
             </Typography>
             <div className="flex items-center gap-4">
               <div className="mr-4 hidden lg:block">{NavbarItems}</div>
