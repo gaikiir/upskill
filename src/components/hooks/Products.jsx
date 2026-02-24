@@ -68,7 +68,7 @@ export default function useProduct() {
     return () => {
       // abort the most recent request on unmount
       if (controllerRef.current) controllerRef.current.abort();
-      console.log("you have successfully cleanUp",)
+      console.log("you have successfully cleanUp");
     };
   }, [fetchProducts]);
 
