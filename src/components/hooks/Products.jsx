@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const apiUrl =
   "https://fakerestaurantapi.runasp.net/api/Restaurant/items?sortbyprice=asc";
 const proxyUrl = "https://corsproxy.io?" + encodeURIComponent(apiUrl);
-
 export default function useProduct() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
