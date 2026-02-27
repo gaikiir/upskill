@@ -9,10 +9,10 @@ export default function HomePageComponent() {
   return (
     <Container>
       <HeroCarousel />
-      <Products />
-      <ChiefsSection/>
+      <Products isHomePage={true} />
+      <ChiefsSection />
       <FeaturesIcons />
-      <Testimonial/>
+      <Testimonial />
     </Container>
   );
 }

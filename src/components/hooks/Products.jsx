@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const apiUrl =
   "https://fakerestaurantapi.runasp.net/api/Restaurant/items?sortbyprice=asc";
-const proxyUrl = "https://corsproxy.io?" + encodeURIComponent(apiUrl);
+const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
 export default function useProduct() {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
@@ -23,7 +23,7 @@ export default function useProduct() {
       setError(null);
 
       const respond = await axios.get(proxyUrl, {
-        timeout: 10000, // 10 second timeout
+        timeout: 20000, // 10 second timeout
         signal: controller.signal,
       });
 
@@ -68,7 +68,7 @@ export default function useProduct() {
     return () => {
       // abort the most recent request on unmount
       if (controllerRef.current) controllerRef.current.abort();
-      console.log("you have successfully cleanUp",)
+      console.log("you have successfully cleanUp");
     };
   }, [fetchProducts]);
 

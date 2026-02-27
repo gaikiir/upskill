@@ -4,6 +4,7 @@ import "./App.css";
 import Footer from "./components/layouts/Footer";
 import NavbarMain from "./components/layouts/Navbar";
 import HomePageComponent from "./components/pages/HomePage";
+import MenuPage from "./components/pages/MenuPage";
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
       <div className="app">
         <Routes>
           <Route exact path="/" element={<HomePageComponent />} />
+          <Route path="/menu" element={<MenuPage />} />
           {/* <Route path="/product/:id" element={<ProductDetailPage />} /> */}
         </Routes>
-        <Footer/>
+        <Footer />
       </div>
     </BrowserRouter>
   );
