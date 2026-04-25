@@ -1673,3 +1673,27 @@ export default function Products({ isHomePage = false }) {
 
 
 
+  const fetchProducts = async () => {
+    // fresh controller for this fetch
+    const controller = new AbortController();
+    controllerRef.current = controller;
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await axios.get(`${apiUrl}=${query}`, {
+        signal: controller.signal,
+      });
+      setProducts(response.data);
+      console.log(response);
+    } catch (err) {
+      // Abort any intentional — not a real error, don't update state
+      if (axios.isAxiosError(err) || err.name === "canceledError") return;
+      setError(err.message || "An error occurred while fetching products");
+    } finally {
+      // Only update loading if this controller is still the active one.
+      // Prevents a slower previous fetch from clearing loading prematurely.
+      if (controllerRef.current === controller) {
+        setLoading(false);
+      }
+    }
+  };

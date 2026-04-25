@@ -1,5 +1,5 @@
 import { Carousel, Rating, Typography } from "@material-tailwind/react";
-
+import { ArrowButton } from "../utilities/ArrowButton";
 const testimonials = [
   {
     id: 1,
@@ -45,13 +45,14 @@ const testimonials = [
 
 export default function Testimonial() {
   return (
-    <div className="py-12 px-4 bg-gray-100 ">
+    // px-4 bg-gray-100
+    <div className="py-12 mt-5">
       <div className="max-w-5xl mx-auto">
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           <Carousel
-          autoplay={true}
-          autoplayDelay={4000}
-          loop={true}
+            autoplay={true}
+            autoplayDelay={4000}
+            loop={true}
             className="rounded-xl"
             navigation={({ setActiveIndex, activeIndex, length }) => (
               <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
@@ -69,48 +70,10 @@ export default function Testimonial() {
               </div>
             )}
             prevArrow={({ handlePrev }) => (
-              <button
-                onClick={handlePrev}
-                className="!absolute top-2/4 left-4 -translate-y-2/4 rounded-full bg-white/80 hover:bg-white p-2 shadow-lg transition-all hover:scale-110"
-                aria-label="Previous testimonial"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="h-6 w-6 text-purple-700"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
+              <ArrowButton onClick={handlePrev} direction="prev" />
             )}
             nextArrow={({ handleNext }) => (
-              <button
-                onClick={handleNext}
-                className="!absolute top-2/4 right-4 -translate-y-2/4 rounded-full bg-white/80 hover:bg-white p-2 shadow-lg transition-all hover:scale-110"
-                aria-label="Next testimonial"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="h-6 w-6 text-purple-700"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+              <ArrowButton onClick={handleNext} direction="next" />
             )}
           >
             {testimonials.map((testimonial) => (

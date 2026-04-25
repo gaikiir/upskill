@@ -1,7 +1,7 @@
 export function SkeletonCard({itemCount}) {
   return (
-    <div className="border border-gray-200 bg-white/40 shadow-md animate-pulse">
-      <div className="h-40 bg-gray-400"></div>
+    <div className="border border-gray-200 bg-white/40 shadow-md animate-pulse h-96">
+      <div className="h-56 bg-gray-400"></div>
       <div className="p-3 space-y-3">
         <div className="space-y-2">
           <div className="h-4 bg-gray-400 rounded w-3/4"></div>

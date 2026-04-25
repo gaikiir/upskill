@@ -1,17 +1,17 @@
-import FeaturesIcons from "../common/FeatureIcons";
-import HeroCarousel from "../layouts/Carousel";
-import ChiefsSection from "../layouts/Chefs";
+import Chefs from "../layouts/Chefs";
 import { Container } from "../layouts/Container";
-import Products from "../layouts/Products";
+import FeaturesIcons from "../layouts/FeatureIcons";
+import { HeroCarousel } from "../layouts/HeroCarousel";
+import PopularProducts from "../layouts/popular";
 import Testimonial from "../layouts/Testimonial";
 
-export default function HomePageComponent() {
+export default function HomePage() {
   return (
     <Container>
       <HeroCarousel />
-      <Products isHomePage={true} />
-      <ChiefsSection />
       <FeaturesIcons />
+      <PopularProducts />
+      <Chefs />
       <Testimonial />
     </Container>
   );

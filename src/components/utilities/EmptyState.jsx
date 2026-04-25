@@ -7,9 +7,8 @@ export default function IsEmpty({
 }) {
   return (
     <div
-      className="flex items-center justify-center bg-red-100"
-      style={{ height }}
-    >
+      className="flex items-center justify-center bg-gray-50"
+      style={{ height }}   >
       <div className="text-center px-6 max-w-md">
         {icon || (
           <div className="mx-auto w-16 h-16 mb-4 flex items-center justify-center rounded-full bg-gray-200">

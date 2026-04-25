@@ -20,13 +20,13 @@ const CURRENT_YEAR = new Date().getFullYear();
 export default function Footer() {
   return (
     <footer className="bg-gray-900 w-full">
-      <div className="mx-auto w-full max-w-7xl px-8 py-12">
+      <div className=" w-full px-12 py-12">
         {/* Top Section */}
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
           {/* Brand Column */}
           <div className="flex flex-col gap-4">
             <img
-              src="images/urban-utopia-logo.png"
+              src="images/logo.png"
               alt="logo"
               className="w-full max-w-xs object-cover"
             />
